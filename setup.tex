@@ -1,0 +1,208 @@
+% Inspired by Overleaf's fiction novel template (https://de.overleaf.com/latex/templates/fiction-novel/pjdthvgdtsfy) and HPMOR (https://github.com/rjl20/hpmor).
+% If Latex complains about garamondx, extract http://mirrors.ctan.org/install/fonts/garamondx.tds.zip to /usr/local/texlive/texmf-local (on Windows that might be C:\texlive\texmf-local), then:
+% sudo mkdir -p /usr/local/texlive/texmf-local/web2c
+% sudo echo Map zgm.map >> /usr/local/texlive/texmf-local/web2c/updmap.cfg
+% sudo /usr/texbin/mktexlsr
+% sudo -H /usr/texbin/updmap-sys
+% This magically works, go figure.
+
+% PACKAGES
+\documentclass[11pt,twoside,onecolumn,openright,extrafontsizes]{memoir}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[bookmarks=true,unicode=true,pdfborder={0 0 0},breaklinks={true},pdfencoding=auto,hidelinks,pdfusetitle]{hyperref}
+\usepackage{CJKutf8} % display japanese/chinese characters
+\usepackage{AlegreyaSans} % sans-serif font for chapter headings
+\usepackage{garamondx} % serif font for text body
+\usepackage{microtype} % for micro-typographical adjustments
+\usepackage{setspace} % for line spacing
+\usepackage{lettrine} % for drop caps and awesome chapter beginnings
+\usepackage{titlesec} % for manipulation of chapter titles
+\usepackage[style=english]{csquotes} % proper opening and closing quotes
+\usepackage[framemethod=TikZ]{mdframed} % for box in chapter 2
+
+% LAYOUT
+\setstocksize{190mm}{125mm} % size of paper fed to the printer
+\settrimmedsize{184mm}{119mm}{*} % size of paper after trimming the edges
+\settrims{3mm}{3mm} % amount trimmed from the top and fore-edge
+\settypeblocksize{150mm}{*}{*} % size of main text
+\setlrmarginsandblock{17mm}{13mm}{*}
+\setulmargins{*}{*}{1.4} % ratio between up and down margins
+\setheadfoot{1\baselineskip}{2\baselineskip} % header height and skip from text bottom to footer bottom
+\setheaderspaces{*}{*}{*} % equal spacing above and below header
+\settypeoutlayoutunit{mm} % print dimensions in millimeters in compilation output
+
+% TITLE PAGES
+% first page of the book
+\newcommand*\firsttitlepage{\begingroup
+	\begin{center}
+		\vspace*{0.1\textheight}
+		\rule{\textwidth}{0in}\par
+		{\Large\textsc\thetitle\par}
+		\rule{\textwidth}{0in}\par
+		\vfill
+	\end{center}
+	\endgroup}
+
+% third page of the book
+\newcommand*\secondtitlepage{\begingroup
+	\begin{center}
+		\vspace*{0.15\textheight}
+		\rule{\textwidth}{0in}\par
+		{\HUGE\textsc\thetitle\par}
+		\rule{\textwidth}{0in}\par
+		{\Large\textit\theauthor\par}
+		\vfill
+		{\Large\scshape\press}
+	\end{center}
+	\endgroup}
+
+% part title pages
+\renewcommand{\printpartname}{} % remove part number from part title pages
+\renewcommand{\partnamenum}{}
+\renewcommand{\printpartnum}{}
+\renewcommand{\midpartskip}{}
+\renewcommand{\parttitlefont}{\normalfont\bfseries\sffamily\huge}
+\makeatletter % allow additional text on part title page (see \mypart)
+\renewcommand{\beforepartskip}{\null\vskip4cm}
+\renewcommand{\afterpartskip}{\par\vskip1cm%
+	\@afterindentfalse\@afterheading}
+\makeatother
+
+% custom part title page, allows additional text on part title page and the following page
+\newcommand{\mypart}[3]{\nopartblankpage
+	\part{#1}
+	{#2}
+	\thispagestyle{empty}
+	\newpage
+	\thispagestyle{empty}
+	\begin{vplace}[.27]
+		\itshape\small\centering
+		\parindent=0pt
+		#3
+	\end{vplace}
+	\clearpage}
+
+% chapter title pages
+\titleformat
+	{\chapter} % redefine \chapter command
+	[display]
+	{\normalfont\scshape\sffamily} % number and title style
+	{\HUGE\centering\thechapter} % number style
+	{0pt}
+	{\vspace{18pt}\huge\centering\MakeLowercase} % title style
+	[\vspace{28pt}]
+
+% first letter of chapter
+\setcounter{DefaultLines}{1}
+\renewcommand{\DefaultLoversize}{0}
+\renewcommand{\DefaultLraise}{0}
+
+% chapter epigraphs
+\setlength{\epigraphwidth}{0.75\textwidth}
+\setlength{\epigraphrule}{0.5pt}
+\newcommand{\myepigraph}[2]{\epigraph{\sffamily #1}{\sffamily\textsc{#2}}}
+
+% TABLE OF CONTENTS
+\renewcommand{\contentsname}{\normalfont\scshape\textsf{\MakeLowercase Contents}}
+\renewcommand{\cftchapterfont}{\normalfont}
+\renewcommand{\cftchapterpagefont}{\normalfont}
+\renewcommand{\printtoctitle}{\centering\huge}
+\renewcommand{\partnumberline}[1]{\hspace{\cftpartnumwidth}} % remove part numbers, indent nonetheless
+\setpnumwidth{2em}
+\setlength{\cftbeforepartskip}{2em}
+\setlength{\cftbeforechapterskip}{0.5em}
+\makeatletter
+\@addtoreset{chapter}{part} % reset chapter count for each part
+\makeatother
+
+% HEADER AND FOOTER
+\headsep = 0.16in % sensible margins
+\nouppercaseheads % do not uppercase chapter titles
+\newcommand{\headerstyle}{\scriptsize\scshape\MakeLowercase} % basic font style for headers
+
+% enable use of part and subsection titles in headers
+\let\Partmark\partmark
+\def\partmark#1{\def\Partname{#1}\Partmark{#1}}
+\let\Subsectionmark\subsectionmark
+\def\subsectionmark#1{\def\Subsectionname{#1}\Subsectionmark{#1}}
+
+% first pages of chapters are internally assigned the plain style, which has no headers by default
+% additionally, remove footers on such pages
+\makepagestyle{plain}
+\makeevenfoot{plain}{}{}{}
+\makeoddfoot{plain}{}{}{}
+
+% header/footer style for the main text
+\makepagestyle{main}
+\makepsmarks{main}{\createmark{chapter}{left}{nonumber}{}{}} % define left mark as chapter title only (no number)
+\makeevenhead{main}{}{\textsf{\headerstyle{\Partname, Chapter \thechapter}}}{} % part name/chapter number on every verso page
+\makeoddhead{main}{}{\textsf{\headerstyle\leftmark}}{} % chapter title (see left mark above) on every recto page
+\makeevenfoot{main}{}{\textsf{\scriptsize\thepage}}{} % page number
+\makeoddfoot{main}{}{\textsf{\scriptsize\thepage}}{}
+
+% like main, but includes only page numbers
+\copypagestyle{bare}{main}
+\makeevenhead{bare}{}{}{}
+\makeoddhead{bare}{}{}{}
+
+% like main, but only includes part name on every verso page (no chapter number)
+\copypagestyle{part}{main}
+\makeevenhead{part}{}{\sffamily\headerstyle\Partname}{}
+
+% like part, but includes subsection title on every recto page (no chapter title)
+\copypagestyle{subsection}{part}
+\makeoddhead{subsection}{}{\sffamily\headerstyle\Subsectionname}{}
+
+% TEXT
+% line spacing
+\providecommand{\LineSpread}{1.11}
+\setSingleSpace{\LineSpread}
+\SingleSpace
+
+% slight indent and no skip for paragraphs
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0pt}
+
+% automatic open and closing quotes
+\MakeOuterQuote{"}
+
+% ENVIRONMENTS
+% used in chapter 2
+\newenvironment{boxed}[1]{%
+	\mdfsetup{%
+		frametitle={%
+			\tikz[baseline=(current bounding box.east),outer sep=0pt]
+			\node[anchor=east,rectangle,fill=gray!40,font=\sffamily]
+			{\strut \ \ #1\ \ };}}%
+	\mdfsetup{innertopmargin=6pt,innerbottommargin=10pt,linecolor=gray!40,%
+		linewidth=1.5pt,topline=true,%
+		frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+	}
+	\begin{mdframed}[font=\sffamily]\relax}{\end{mdframed}}
+
+% COMMANDS
+\newcommand{\myspace}{\plainbreak{1}}
+
+\newcommand{\mybreak}{\myspace
+	\fancybreak{*\qquad*\qquad*}
+	\myspace}
+
+\newcommand{\standout}[1]{\myspace
+	{\sffamily #1}
+	\myspace}
+
+\newcommand{\poem}[1]{
+	\begin{center}
+		\sffamily
+		\emph{#1}
+	\end{center}}
+
+\newcommand{\memo}[2][0.7\textwidth]{
+	\vspace{0.2cm}
+	\includegraphics[width=#1]{images/memo#2.png}
+	\vspace{0.2cm}
+}
+
+% APPLY LAYOUT
+\checkandfixthelayout

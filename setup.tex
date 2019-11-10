@@ -185,6 +185,13 @@
 	, BoldItalicFeatures={SmallCapsFont={*SC-BoldItalic}}
 ]{AlegreyaSans}
 
+% memos
+\newfontface\karan[ExternalLocation=fonts/]{joehand-2}
+\newfontface\nezumi[ExternalLocation=fonts/]{sunday-monday}
+\newfontface\shion[ExternalLocation=fonts/]{biro-script}
+\newfontface\inukashi[ExternalLocation=fonts/]{gabo-4}
+\newfontface\sasori[ExternalLocation=fonts/]{lipsum}
+
 % ENVIRONMENTS
 % used in chapter 2
 \newenvironment{boxed}[1]{%
@@ -219,10 +226,10 @@
 		\emph{#1}
 	\end{center}}
 
-\newcommand{\memo}[2][0.7\textwidth]{
-	\vspace{0.2cm}
-	\includegraphics[width=#1]{images/memo#2.png}
-	\vspace{0.2cm}
+\newcommand{\memo}[2]{
+	\myspace
+	{#1 #2}
+	\myspace
 }
 
 % APPLY LAYOUT

@@ -1,23 +1,14 @@
+% THIS DOCUMENT REQUIRES LuaLaTeX TO COMPILE!
 % Inspired by Overleaf's fiction novel template (https://de.overleaf.com/latex/templates/fiction-novel/pjdthvgdtsfy) and HPMOR (https://github.com/rjl20/hpmor).
-% If Latex complains about garamondx, extract http://mirrors.ctan.org/install/fonts/garamondx.tds.zip to /usr/local/texlive/texmf-local (on Windows that might be C:\texlive\texmf-local), then:
-% sudo mkdir -p /usr/local/texlive/texmf-local/web2c
-% sudo echo Map zgm.map >> /usr/local/texlive/texmf-local/web2c/updmap.cfg
-% sudo /usr/texbin/mktexlsr
-% sudo -H /usr/texbin/updmap-sys
-% This magically works, go figure.
 
 % PACKAGES
 \documentclass[11pt,twoside,onecolumn,openright,extrafontsizes]{memoir}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 \usepackage[bookmarks=true,unicode=true,pdfborder={0 0 0},breaklinks={true},pdfencoding=auto,hidelinks,pdfusetitle]{hyperref}
-\usepackage{CJKutf8} % display japanese/chinese characters
-\usepackage{AlegreyaSans} % sans-serif font for chapter headings
-\usepackage{garamondx} % serif font for text body
 \usepackage{microtype} % for micro-typographical adjustments
 \usepackage{setspace} % for line spacing
 \usepackage{lettrine} % for drop caps and awesome chapter beginnings
 \usepackage{titlesec} % for manipulation of chapter titles
+\usepackage{fontspec} % enables loading TTF fonts (requires LuaLaTeX!)
 \usepackage[style=english]{csquotes} % proper opening and closing quotes
 \usepackage[framemethod=TikZ]{mdframed} % for box in chapter 2
 
@@ -167,6 +158,33 @@
 % automatic open and closing quotes
 \MakeOuterQuote{"}
 
+% FONTS
+% URW Garamond No. 8, 10.5 pt
+\setmainfont[
+	, ExternalLocation=fonts/garamond/
+	, Ligatures={Common,TeX}
+	, UprightFont=*-Regular
+	, ItalicFont=*-Italic
+	, BoldFont=*-Bold
+	, BoldItalicFont=*-Bold-Italic
+	, Scale=0.95
+]{GaramondNo8}
+
+% Alegreya Sans, 10.5 pt
+\setsansfont[
+	, ExternalLocation=fonts/alegreya-sans/
+	, Ligatures={Common,TeX}
+	, UprightFont=*-Regular
+	, ItalicFont=*-Italic
+	, BoldFont=*-Bold
+	, BoldItalicFont=*-BoldItalic
+	, Scale=0.95
+	, UprightFeatures={SmallCapsFont={*SC-Regular}}
+	, BoldFeatures={SmallCapsFont={*SC-Bold}}
+	, ItalicFeatures={SmallCapsFont={*SC-Italic}}
+	, BoldItalicFeatures={SmallCapsFont={*SC-BoldItalic}}
+]{AlegreyaSans}
+
 % ENVIRONMENTS
 % used in chapter 2
 \newenvironment{boxed}[1]{%
@@ -182,6 +200,9 @@
 	\begin{mdframed}[font=\sffamily]\relax}{\end{mdframed}}
 
 % COMMANDS
+% On Windows, this works out-of-the-box to render Japanese characters
+\newcommand{\jp}[1]{{\fontspec{Batang} #1}}
+
 \newcommand{\myspace}{\plainbreak{1}}
 
 \newcommand{\mybreak}{\myspace

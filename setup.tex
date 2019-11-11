@@ -13,12 +13,12 @@
 \usepackage[framemethod=TikZ]{mdframed} % for box in chapter 2
 
 % LAYOUT
-\setstocksize{190mm}{125mm} % size of paper fed to the printer
-\settrimmedsize{184mm}{119mm}{*} % size of paper after trimming the edges
+\setstocksize{205mm}{135mm} % size of paper fed to the printer
+\settrimmedsize{199mm}{129mm}{*} % size of paper after trimming the edges
 \settrims{3mm}{3mm} % amount trimmed from the top and fore-edge
-\settypeblocksize{150mm}{*}{*} % size of main text
-\setlrmarginsandblock{17mm}{13mm}{*}
-\setulmargins{*}{*}{1.4} % ratio between up and down margins
+\settypeblocksize{164mm}{*}{*} % size of main text
+\setlrmarginsandblock{15mm}{11mm}{*}
+\setulmargins{*}{*}{1.2} % ratio between up and down margins
 \setheadfoot{1\baselineskip}{2\baselineskip} % header height and skip from text bottom to footer bottom
 \setheaderspaces{*}{*}{*} % equal spacing above and below header
 \settypeoutlayoutunit{mm} % print dimensions in millimeters in compilation output
@@ -110,7 +110,7 @@
 % HEADER AND FOOTER
 \headsep = 0.16in % sensible margins
 \nouppercaseheads % do not uppercase chapter titles
-\newcommand{\headerstyle}{\scriptsize\scshape\MakeLowercase} % basic font style for headers
+\newcommand{\headerstyle}{\small\scshape\MakeLowercase} % basic font style for headers
 
 % enable use of part and subsection titles in headers
 \let\Partmark\partmark
@@ -129,8 +129,8 @@
 \makepsmarks{main}{\createmark{chapter}{left}{nonumber}{}{}} % define left mark as chapter title only (no number)
 \makeevenhead{main}{}{\textsf{\headerstyle{\Partname, Chapter \thechapter}}}{} % part name/chapter number on every verso page
 \makeoddhead{main}{}{\textsf{\headerstyle\leftmark}}{} % chapter title (see left mark above) on every recto page
-\makeevenfoot{main}{}{\textsf{\scriptsize\thepage}}{} % page number
-\makeoddfoot{main}{}{\textsf{\scriptsize\thepage}}{}
+\makeevenfoot{main}{}{\textsf{\small\thepage}}{} % page number
+\makeoddfoot{main}{}{\textsf{\small\thepage}}{}
 
 % like main, but includes only page numbers
 \copypagestyle{bare}{main}
@@ -152,7 +152,7 @@
 \SingleSpace
 
 % slight indent and no skip for paragraphs
-\setlength{\parindent}{1em}
+\setlength{\parindent}{10.5pt}
 \setlength{\parskip}{0pt}
 
 % automatic open and closing quotes

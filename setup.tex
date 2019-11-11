@@ -11,6 +11,8 @@
 \usepackage{fontspec} % enables loading TTF fonts (requires LuaLaTeX!)
 \usepackage[style=english]{csquotes} % proper opening and closing quotes
 \usepackage[framemethod=TikZ]{mdframed} % for box in chapter 2
+\usepackage{xspace} % adds spaces after commands
+\usepackage[xspace]{ellipsis} % better ellipses (...)
 
 % LAYOUT
 \setstocksize{205mm}{135mm} % size of paper fed to the printer
@@ -155,8 +157,9 @@
 \setlength{\parindent}{10.5pt}
 \setlength{\parskip}{0pt}
 
-% automatic open and closing quotes
-\MakeOuterQuote{"}
+\MakeOuterQuote{"} % automatic open and closing quotes
+\xspaceaddexceptions{"} % do not add a space between ellipsis and quote
+\newcommand*{\el}{\kern \ellipsisgap\ldots} % ellipsis (...)
 
 % FONTS
 % URW Garamond No. 8, 10.5 pt

@@ -1,0 +1,33 @@
+% We want the total number of real pages (sheets) to be a multiple of 4, and we
+% want the colophon to land on the last page (which will necessarily be an even
+% page). So we might need to insert up to 3 blank pages before the colophon.
+% First we calculate the current page number modulo 4:
+\clearpage
+\makeatletter
+\count@=\c@sheetsequence%
+\@tempcnta=\count@
+\divide\@tempcnta by 4
+\multiply\@tempcnta by 4
+\count@=\numexpr\count@-\@tempcnta\relax
+\ifnum\count@>0
+\pagestyle{empty}
+\loop\ifnum\count@<4
+\null\clearpage
+\advance\count@\@ne
+\repeat
+\fi
+\makeatother
+
+% Now the current page is a multiple of 4. We put the colophon here.
+{\null\vfil%
+\thispagestyle{empty}\noindent\rightskip=0pt plus 1fil\leftskip=0pt plus 1fil\parfillskip=0pt%
+\vbox{
+\parshape 1 0em 21em
+\noindent
+\leftskip=0pt\rightskip=0pt\parfillskip=0pt plus 1fil{}\emph{This book wasformatted by fans of the story.
+	The text was set in 10½ pointURW~Garamond~No.~8 and in Alegreya~Sans.
+	Typesetting was done using \emph{\LaTeX}; the source code can be found at\mbox{\url{url}}.
+	This book was built on \today.
+}}\vskip\footskip%
+\vfil\vfil
+\newpage }

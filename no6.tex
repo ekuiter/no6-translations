@@ -2,54 +2,38 @@
 % !TeX spellcheck = en_US
 
 \input{setup}
-\title{No. 6}
-\newcommand{\booktitle}{Part One}
-\author{Atsuko Asano}
-\newcommand{\translator}{Nostalgia on 9\textsuperscript{th} Avenue}
-\newcommand{\publisher}{Kodansha}
+\input{meta}
+\newcommand{\booktitle}{}
 
 \begin{document}
 	\frontmatter
 	\pagestyle{empty}
 	\halftitlepage
 	\clearpage
-	\seriespage{
-		\addbook{Part One}{Volume I\\Volume II\\Volume III}
-		\addbook{Part Two}{Volume IV\\Volume V\\Volume VI}
-		\addbook{Part Three}{Volume VIII\\Volume IX\\Beyond\\Side Stories\\Afterwords}
-	}
+	\seriespage
 	\clearpage
 	\titlepage
-	
-	\frontmatter
-	\pagestyle{main}
-	\cleardoublepage
+	\clearpage
+	\copyrightpage
+	\clearpage
 	\pagestyle{bare}
 	\tableofcontents*
 	
 	\mainmatter
 	\pagestyle{main}
 	\input{parts/volume1}
-%	\input{parts/volume2}
-%	\input{parts/volume3}
-%	\input{parts/volume4}
-%	\input{parts/volume5}
-%	\input{parts/volume6}
-%	\input{parts/volume7}
-%	\input{parts/volume8}
-%	\input{parts/volume9}
-%	\input{parts/beyond}
+	\input{parts/volume2}
+	\input{parts/volume3}
+	\input{parts/volume4}
+	\input{parts/volume5}
+	\input{parts/volume6}
+	\input{parts/volume7}
+	\input{parts/volume8}
+	\input{parts/volume9}
+	\input{parts/beyond}
 	
 	\backmatter
-%	\input{parts/side-stories}
-%	\input{parts/afterwords}
-	\colophonpage{%
-		This book was formatted by fans of the story.
-		The text was set in 10½ point \href{https://ctan.org/tex-archive/fonts/urw/garamond/}{URW~Garamond~No.~8}.
-		Headings, epigraphs and poems were set in \href{https://www.huertatipografica.com}{Alegreya~Sans}.
-		Handwritten memos were set in \href{http://www.joebob.nl/}{Joe~Hand~2} (Karan), \href{http://www.dafont.com/david-kerkhoff.d2542}{Sunday~\&~Monday} (Nezumi), \href{http://www.ingofonts.com/}{Biro~Script} (Shion), \href{http://www.dafont.com/gabriel-de-ioannes-becker.d1961}{Gabo~4} (Inukashi), and \href{http://loremipsum.ro/}{Lipsum} (Sasori).\vspace{2ex}\\
-		Typesetting was done using \emph{\LaTeX}; the source code can be found at \myhref{https://github.com/ekuiter/no6-translations}{github.com/ekuiter/no6-translations}.
-		Do feel free to report any typesetting mistakes.
-		This book was built on \today.
-	}
+	\input{parts/side-stories}
+	\input{parts/afterwords}
+	\colophonpage
 \end{document}

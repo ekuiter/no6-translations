@@ -25,31 +25,51 @@
 \setheaderspaces{*}{*}{*} % equal spacing above and below header
 \settypeoutlayoutunit{mm} % print dimensions in millimeters in compilation output
 
-% TITLE PAGES
-% first page of the book
-\newcommand*\firsttitlepage{\begingroup
+% FRONT MATTER
+% first page
+\newcommand*\halftitlepage{\begingroup
 	\begin{center}
 		\vspace*{0.1\textheight}
 		\rule{\textwidth}{0in}\par
-		{\Large\textsc\thetitle\par}
+		{\Large\sffamily\thetitle\par}
 		\rule{\textwidth}{0in}\par
 		\vfill
 	\end{center}
 	\endgroup}
 
-% third page of the book
-\newcommand*\secondtitlepage{\begingroup
+% second page
+\newcommand*{\addbook}[2]{
+	{\bfseries #1}\par
+	#2\bigskip\par}
+\newcommand*{\seriespage}[1]{\begingroup
+	\thispagestyle{empty}
+	\begin{vplace}
+		\begin{center}
+			\small \thetitle
+			\par
+			\vspace*{1cm}
+			\normalsize
+			#1
+		\end{center}
+	\end{vplace}
+	\endgroup}
+
+% third page
+\newcommand*\titlepage{\begingroup
 	\begin{center}
-		\vspace*{0.15\textheight}
+		\vspace*{0.1\textheight}
 		\rule{\textwidth}{0in}\par
-		{\HUGE\textsc\thetitle\par}
+		{\HUGE\bfseries\sffamily\thetitle\par}
 		\rule{\textwidth}{0in}\par
-		{\Large\textit\theauthor\par}
-		\vfill
-		{\Large\scshape\press}
+		{\Large\booktitle\par}
+		\vspace{\stretch{4.5}}
+		{A novel by\\\Large\textit\theauthor\par}
+		\vspace{\stretch{0.5}}
+		{Published by\\\Large\textit\publisher\par}
 	\end{center}
 	\endgroup}
 
+% PARTS & CHAPTERS
 % part title pages
 \renewcommand{\printpartname}{} % remove part number from part title pages
 \renewcommand{\partnamenum}{}

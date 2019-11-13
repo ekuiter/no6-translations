@@ -3,14 +3,21 @@
 
 \input{setup}
 \title{No. 6}
+\newcommand{\booktitle}{Part One}
 \author{Atsuko Asano}
-\newcommand{\press}{Kodansha}
+\newcommand{\publisher}{Kodansha}
 
 \begin{document}
 	\pagestyle{empty}
-	\firsttitlepage
-	\cleardoublepage
-	\secondtitlepage
+	\halftitlepage
+	\clearpage
+	\seriespage{
+		\addbook{Part One}{Volume I\\Volume II\\Volume III}
+		\addbook{Part Two}{Volume IV\\Volume V\\Volume VI}
+		\addbook{Part Three}{Volume VIII\\Volume IX\\Beyond\\Side Stories\\Afterwords}
+	}
+	\clearpage
+	\titlepage
 	
 	\frontmatter
 	\pagestyle{main}
@@ -21,18 +28,18 @@
 	\mainmatter
 	\pagestyle{main}
 	\input{parts/volume1}
-	\input{parts/volume2}
-	\input{parts/volume3}
-	\input{parts/volume4}
-	\input{parts/volume5}
-	\input{parts/volume6}
-	\input{parts/volume7}
-	\input{parts/volume8}
-	\input{parts/volume9}
-	\input{parts/beyond}
+%	\input{parts/volume2}
+%	\input{parts/volume3}
+%	\input{parts/volume4}
+%	\input{parts/volume5}
+%	\input{parts/volume6}
+%	\input{parts/volume7}
+%	\input{parts/volume8}
+%	\input{parts/volume9}
+%	\input{parts/beyond}
 	
 	\backmatter
-	\input{parts/side-stories}
-	\input{parts/afterwords}
+%	\input{parts/side-stories}
+%	\input{parts/afterwords}
 	\input{colophon}
 \end{document}

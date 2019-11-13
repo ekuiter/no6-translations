@@ -40,12 +40,14 @@
 % second page
 \newcommand*{\addbook}[2]{
 	{\bfseries #1}\par
+	\vspace*{0.5mm}
 	#2\bigskip\par}
 \newcommand*\seriespage{\begingroup
 	\thispagestyle{empty}
+	\vspace*{-2cm}
 	\begin{vplace}
 		\begin{center}
-			\small \thetitle
+			{\small\sffamily\thetitle}
 			\par
 			\vspace*{1cm}
 			\normalsize
@@ -72,7 +74,7 @@
 	\endgroup}
 
 % fourth page
-\newcommand{\copyrightpage}{\noindent{\small \mycopyright}}
+\newcommand{\copyrightpage}[1]{\noindent{\small #1}}
 
 % BACK MATTER
 % We want the total number of real pages (sheets) to be a multiple of 4, and we

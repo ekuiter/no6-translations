@@ -1,0 +1,30 @@
+% !TeX program = lualatex
+% !TeX spellcheck = en_US
+
+\input{setup}
+\input{meta}
+\renewcommand{\booktitle}{Part Two}
+
+\begin{document}
+	\frontmatter
+	\pagestyle{empty}
+	\halftitlepage
+	\clearpage
+	\seriespage
+	\clearpage
+	\titlepage
+	\clearpage
+	\copyrightpage{\shortcopyright}
+	\clearpage
+	\pagestyle{bare}
+	\tableofcontents*
+	
+	\mainmatter
+	\pagestyle{main}
+	\input{parts/volume4}
+	\input{parts/volume5}
+	\input{parts/volume6}
+	
+	\backmatter
+	\colophonpage
+\end{document}

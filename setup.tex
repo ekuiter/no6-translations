@@ -62,10 +62,12 @@
 		{\HUGE\bfseries\sffamily\thetitle\par}
 		\rule{\textwidth}{0in}\par
 		{\Large\booktitle\par}
-		\vspace{\stretch{4.5}}
+		\vspace{\stretch{3.5}}
 		{A novel by\\\Large\textit\theauthor\par}
-		\vspace{\stretch{0.5}}
-		{Published by\\\Large\textit\publisher\par}
+		\vspace{\stretch{1}}
+		{{\small Translated by}\\\textit\translator\par}
+		\vspace{\stretch{0.2}}
+		{{\small Original published by}\\\textit\publisher\par}
 	\end{center}
 	\endgroup}
 
@@ -253,6 +255,8 @@
 	{#1 #2}
 	\myspace
 }
+
+\newcommand{\myhref}[2]{{\small\texttt{\href{#1}{#2}}}}
 
 % APPLY LAYOUT
 \checkandfixthelayout

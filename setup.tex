@@ -13,6 +13,7 @@
 \usepackage[framemethod=TikZ]{mdframed} % for box in chapter 2
 \usepackage{xspace} % adds spaces after commands
 \usepackage[xspace]{ellipsis} % better ellipses (...)
+\usepackage{calc} % calculate text width for epigraphs
 
 % LAYOUT
 \setstocksize{205mm}{135mm} % size of paper fed to the printer
@@ -153,9 +154,12 @@
 \renewcommand{\DefaultLraise}{0}
 
 % chapter epigraphs
-\setlength{\epigraphwidth}{0.75\textwidth}
-\setlength{\epigraphrule}{0.5pt}
-\newcommand{\myepigraph}[2]{\epigraph{\sffamily #1}{\sffamily\textsc{#2}}}
+\setlength{\epigraphwidth}{\textwidth}
+\setlength{\epigraphrule}{0pt}
+\newcommand{\myepigraph}[2]{\epigraph{\sffamily\itshape #1}{\vspace{0.8ex}\rule{\widthof{#2}}{0.5pt}\vspace{-0.4ex}\break\sffamily\textsc{#2}}}
+\renewcommand{\textflush}{flushright}
+\renewcommand{\beforeepigraphskip}{-2cm}
+\renewcommand{\afterepigraphskip}{-0.2cm}
 
 % TABLE OF CONTENTS
 \renewcommand{\contentsname}{\normalfont\scshape\textsf{\MakeLowercase Contents}}

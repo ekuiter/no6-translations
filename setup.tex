@@ -67,9 +67,9 @@
 		{\Large\booktitle\par}
 		\vspace{\stretch{3.5}}
 		{A novel by\\\Large\textit\theauthor\par}
-		\vspace{\stretch{1}}
+		\vspace{\stretch{1.2}}
 		{{\small Translated by}\\\textit\translator\par}
-		\vspace{\stretch{0.2}}
+		\vspace{\stretch{0.4}}
 		{{\small Original published by}\\\textit\publisher\par}
 	\end{center}
 	\endgroup}
@@ -173,6 +173,12 @@
 \makeatletter
 \@addtoreset{chapter}{part} % reset chapter count for each part
 \makeatother
+\newcommand{\mytoc}{\pagestyle{bare}
+	\tableofcontents*
+	\clearpage
+	\pagestyle{empty}
+	\mbox{}
+	\cleardoublepage}
 
 % HEADER AND FOOTER
 \headsep = 0.16in % sensible margins
@@ -275,10 +281,6 @@
 	\begin{mdframed}[font=\sffamily]\relax}{\end{mdframed}}
 
 % COMMANDS
-\newcommand{\jp}[1]{{\fontspec{Batang} #1}} % on Windows, this works out-of-the-box to render Japanese characters
-
-\newcommand{\myspace}{\plainbreak{1}}
-
 \newcommand{\mybreak}{\myspace
 	\fancybreak{*\qquad*\qquad*}
 	\myspace}
@@ -299,8 +301,11 @@
 	\myspace
 }
 
+\newcommand{\jp}[1]{{\fontspec{Batang} #1}} % on Windows, this works out-of-the-box to render Japanese characters
+\newcommand{\myspace}{\plainbreak{1}}
 \newcommand{\myhref}[2]{{\small\texttt{\href{#1}{#2}}}}
 \newcommand{\mysmallhref}[2]{{\footnotesize\texttt{\href{#1}{#2}}}}
+\newcommand{\tocbreak}{\addtocontents{toc}{\protect\newpage\par~\par}}
 
 % APPLY LAYOUT
 \checkandfixthelayout

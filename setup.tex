@@ -121,7 +121,8 @@
 \makeatother
 
 % custom part title page, allows additional text on part title page and the following page
-\newcommand{\mypart}[3]{\nopartblankpage
+\newcommand{\mypartnoclear}[3]{
+	\nopartblankpage
 	\part{#1}
 	{#2}
 	\thispagestyle{empty}
@@ -133,6 +134,14 @@
 		#3
 	\end{vplace}
 	\clearpage}
+\newcommand{\mypart}[3]{\clearpage
+	\thispagestyle{empty}
+	\mbox{}
+	\makeatletter
+	\clearpage \if@twoside \ifodd \c@page \else \hbox {}\thispagestyle{empty}\newpage
+	\if@twocolumn \hbox {}\thispagestyle{empty}\newpage  \fi \fi \fi
+	\makeatother
+	\mypartnoclear{#1}{#2}{#3}}
 
 % chapter title pages
 \titleformat
@@ -174,11 +183,7 @@
 \@addtoreset{chapter}{part} % reset chapter count for each part
 \makeatother
 \newcommand{\mytoc}{\pagestyle{bare}
-	\tableofcontents*
-	\clearpage
-	\pagestyle{empty}
-	\mbox{}
-	\cleardoublepage}
+	\tableofcontents*}
 
 % HEADER AND FOOTER
 \headsep = 0.16in % sensible margins
@@ -226,7 +231,8 @@
 
 % no indent and slight skip for paragraphs
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{2pt}
+\setlength{\parskip}{1.6pt plus 1.1pt minus 0.4pt} % use glue length to make paragraphs stretchable
+\hyphenation{Shi-on Ne-zu-mi Inu-ka-shi Ri-ki-ga Ka-ran Sa-fu Yo-ming Li-li}
 
 \MakeOuterQuote{"} % automatic open and closing quotes
 \xspaceaddexceptions{"} % do not add a space between ellipsis and quote

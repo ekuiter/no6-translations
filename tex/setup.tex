@@ -183,7 +183,11 @@
 \@addtoreset{chapter}{part} % reset chapter count for each part
 \makeatother
 \newcommand{\mytoc}{\pagestyle{bare}
-	\tableofcontents*}
+	\tableofcontents*
+	\clearpage
+	\pagestyle{empty}
+	\mbox{}
+	\cleardoublepage}
 
 % HEADER AND FOOTER
 \headsep = 0.16in % sensible margins
